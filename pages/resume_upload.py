@@ -1,5 +1,5 @@
 import streamlit as st
-from PyPDF2 import PdfReader
+import pdfplumber
 
 st.title("Resume Upload")
 
@@ -8,26 +8,19 @@ uploaded_file = st.file_uploader(
     type=["pdf"]
 )
 
-if uploaded_file is not None:
+if uploaded_file:
 
-    try:
-        pdf_reader = PdfReader(uploaded_file)
+    resume_text = ""
 
-        resume_text = ""
-
-        for page in pdf_reader.pages:
+    with pdfplumber.open(uploaded_file) as pdf:
+        for page in pdf.pages:
             text = page.extract_text()
 
             if text:
                 resume_text += text + "\n"
 
-        st.session_state["resume_text"] = resume_text
-        st.write("Characters Extracted:", len(resume_text))
-        st.text_area("Resume Preview", resume_text[:1000], height=200)
+    st.session_state["resume_text"] = resume_text
 
-        st.success("Resume Uploaded Successfully!")
+    st.success("Resume Uploaded Successfully!")
 
-        st.write("Characters Extracted:", len(resume_text))
-
-    except Exception as e:
-        st.error(f"Error reading PDF: {e}")
+    st.write("Characters Extracted:", len(resume_text))
