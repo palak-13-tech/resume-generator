@@ -5,6 +5,8 @@ st.title("ATS Analysis")
 
 resume_text = st.session_state.get("resume_text", "")
 jd_text = st.session_state.get("job_description", "")
+st.subheader("Resume Preview")
+st.write(resume_text[:500])
 
 st.write("Resume Length:", len(resume_text))
 st.write("JD Length:", len(jd_text))
