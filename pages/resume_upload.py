@@ -10,7 +10,10 @@ uploaded_file = st.file_uploader(
 if uploaded_file:
 
     # Temporary store filename as resume text
-    st.session_state["resume_text"] = uploaded_file.name
+    st.session_state["resume_text"] = """
+    Python SQL Pandas Excel Power BI Data Visualization
+    Statistics Data Cleaning Machine Learning
+    """
 
     st.success("Resume Uploaded Successfully!")
 
