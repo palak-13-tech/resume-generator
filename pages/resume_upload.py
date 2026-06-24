@@ -1,5 +1,5 @@
 import streamlit as st
-#import pdfplumber
+import pdfplumber
 
 st.title("Resume Upload")
 
