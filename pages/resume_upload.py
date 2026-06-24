@@ -1,5 +1,4 @@
 import streamlit as st
-#import pdfplumber
 
 st.title("Resume Upload")
 
@@ -9,24 +8,5 @@ uploaded_file = st.file_uploader(
 )
 
 if uploaded_file:
-
-    text = ""
-
-    with pdfplumber.open(uploaded_file) as pdf:
-        for page in pdf.pages:
-            page_text = page.extract_text()
-            if page_text:
-                text += page_text + "\n"
-
-    # Save resume text in session
-    st.session_state["resume_text"] = text
-
-    st.success("Resume Uploaded Successfully")
-
-    st.subheader("Extracted Resume Text")
-
-    st.text_area(
-        "Resume Content",
-        text,
-        height=300
-    )
+    st.success("Resume Uploaded Successfully!")
+    st.write("Filename:", uploaded_file.name)
