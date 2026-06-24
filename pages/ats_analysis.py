@@ -6,12 +6,14 @@ st.title("ATS Analysis")
 # Show stored data lengths
 st.write("Resume Length:", len(st.session_state.get("resume_text", "")))
 st.write("JD Length:", len(st.session_state.get("job_description", "")))
+resume_text = st.session_state.get("resume_text", "")
+jd_text = st.session_state.get("job_description", "")
+
 st.write("Resume Text:")
 st.write(resume_text)
 
 st.write("JD Text:")
 st.write(jd_text[:500])
-
 if st.button("Calculate ATS Score"):
 
     resume_text = st.session_state.get("resume_text", "")
